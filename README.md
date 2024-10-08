@@ -4,5 +4,3 @@ Few lines of code in this project will look for files in the downloads folder, c
 Requirements:
   1. watchdog needs to be installed (paste the following command in terminal "pip install watchdog").
   2. shutil may need to be installed if it's not installed already in your system (paste the following command in terminal "pip install shutil").
-
-For better efficiency enable this on the startup the your system and never worry about the jumbled mess in your downloads folder ever. 
