@@ -75,6 +75,17 @@ def wait_until_stable(path: str, poll_interval: float = 1.0, timeout: float = 30
         return False
 
 
+def unique_destination(folder: str, filename: str) -> str:
+    """If filename already exists in folder, append ' (1)', ' (2)', ... until it doesn't."""
+    name, ext = os.path.splitext(filename)
+    candidate = os.path.join(folder, filename)
+    counter = 1
+    while os.path.exists(candidate):
+        candidate = os.path.join(folder, f"{name} ({counter}){ext}")
+        counter += 1
+    return candidate
+
+
 def organize_file(path: str, destination_root: str) -> None:
     filename = os.path.basename(path)
     _, extension = os.path.splitext(filename)
@@ -84,13 +95,20 @@ def organize_file(path: str, destination_root: str) -> None:
     if not wait_until_stable(path):
         return
 
-    destination_folder = category_for(extension)
-    destination = os.path.join(destination_root, destination_folder)
+    category_folder = category_for(extension)
+    destination = unique_destination(os.path.join(destination_root, category_folder), filename)
 
     try:
         shutil.move(path, destination)
-        logger.info("Moved %s -> %s", filename, destination_folder)
-    except (shutil.Error, OSError) as exc:
+        final_name = os.path.basename(destination)
+        if final_name != filename:
+            logger.info(
+                "Moved %s -> %s (renamed to %s, a file with that name already existed)",
+                filename, category_folder, final_name,
+            )
+        else:
+            logger.info("Moved %s -> %s", filename, category_folder)
+    except OSError as exc:
         logger.warning("Could not move %s: %s", filename, exc)
 
 
