@@ -45,16 +45,16 @@ pythonw main.py
 
 Once running, look for its dot icon in the system tray (you may need to click the "^" overflow arrow to see it). Right-click it to open the menu:
 
-| Menu item | What it does |
-|---|---|
-| **Status: Running / Stopped** | Read-only indicator of the current state |
-| **Start Watching / Stop Watching** | Manual on/off switch — pause or resume without closing the app |
-| **Settings...** | Opens a window to change the watched folder and/or destination folder |
-| **Open Log** | Opens `watcher.log`, which records every file moved and any errors |
-| **Open Watched Folder** | Opens the folder currently being watched |
-| **Open Destination Folder** | Opens the folder where sorted subfolders are created |
-| **Start with Windows** | Checkbox — enable to launch automatically (via `pythonw`, no console window) next time you log in. Off by default; toggle anytime |
-| **Exit** | Stops watching and closes the app |
+| Menu item                          | What it does                                                                                                                      |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Status: Running / Stopped**      | Read-only indicator of the current state                                                                                          |
+| **Start Watching / Stop Watching** | Manual on/off switch — pause or resume without closing the app                                                                    |
+| **Settings...**                    | Opens a window to change the watched folder and/or destination folder                                                             |
+| **Open Log**                       | Opens `watcher.log`, which records every file moved and any errors                                                                |
+| **Open Watched Folder**            | Opens the folder currently being watched                                                                                          |
+| **Open Destination Folder**        | Opens the folder where sorted subfolders are created                                                                              |
+| **Start with Windows**             | Checkbox — enable to launch automatically (via `pythonw`, no console window) next time you log in. Off by default; toggle anytime |
+| **Exit**                           | Stops watching and closes the app                                                                                                 |
 
 ### Changing the watched or destination folder
 
@@ -71,15 +71,15 @@ If `FOLDER_TO_TRACK` is left unset, the OS Downloads folder is detected automati
 
 ## Project structure
 
-| File | Responsibility |
-|---|---|
-| `main.py` | Entry point — starts the watcher and the tray app |
-| `config.py` | Environment/`.env` loading, logging setup, folder resolution |
-| `organizer.py` | Core sorting logic: file categories, the watch handler, start/stop service |
-| `tray_app.py` | Builds the system tray icon and menu |
-| `settings_window.py` | The Settings GUI (Tkinter) |
-| `startup.py` | Windows "run at login" registration |
-| `icons.py` | Generates the green/grey tray icon images |
+| File                 | Responsibility                                                             |
+| -------------------- | -------------------------------------------------------------------------- |
+| `main.py`            | Entry point — starts the watcher and the tray app                          |
+| `config.py`          | Environment/`.env` loading, logging setup, folder resolution               |
+| `organizer.py`       | Core sorting logic: file categories, the watch handler, start/stop service |
+| `tray_app.py`        | Builds the system tray icon and menu                                       |
+| `settings_window.py` | The Settings GUI (Tkinter)                                                 |
+| `startup.py`         | Windows "run at login" registration                                        |
+| `icons.py`           | Generates the green/grey tray icon images                                  |
 
 ## Contributing
 
